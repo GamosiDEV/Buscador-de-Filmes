@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_database/Controller/movies_controller.dart';
 import 'package:movie_database/Model/movies_model.dart';
+import 'package:movie_database/View/movie_info_view.dart';
 import 'package:movie_database/View/show_movie_list_view.dart';
 
 class MoviesView extends StatefulWidget {
@@ -11,7 +12,6 @@ class MoviesView extends StatefulWidget {
 }
 
 class _MoviesViewState extends State<MoviesView> {
-
   final MoviesController _moviesController = MoviesController();
 
   var searchedMovies;
@@ -31,29 +31,31 @@ class _MoviesViewState extends State<MoviesView> {
         child: Column(
           children: [
             TextField(
-                onSubmitted: (value) {
-                  searchMovie(value);
-                },
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.search),
-                  border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(7.0))),
-                  hintText: 'Digite o nome do filme',
-                ),
+              onSubmitted: (value) {
+                searchMovie(value);
+              },
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.search),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(7.0))),
+                hintText: 'Digite o nome do filme',
               ),
+            ),
             Expanded(
               child: FutureBuilder(
                 future: searchedMovies,
                 builder: (context, snapshot) {
                   if (!snapshot.hasData ||
-                    snapshot.hasError ||
-                    snapshot.connectionState != ConnectionState.done) {
-                  return Container();
-                }
-                return ShowMovieListView(
-                    listOfMovies: snapshot.data as List<MoviesModel>,
-                    pageNumber: actualPage,
-                    nextPageAction: goToNextPage,
-                    previousPageAction: goToPreviousPage);
+                      snapshot.hasError ||
+                      snapshot.connectionState != ConnectionState.done) {
+                    return Container();
+                  }
+                  return ShowMovieListView(
+                      listOfMovies: snapshot.data as List<MoviesModel>,
+                      pageNumber: actualPage,
+                      nextPageActionCallback: goToNextPage,
+                      previousPageActionCallback: goToPreviousPage,
+                      openMovieCardCallback: openMovieCard);
                 },
               ),
             ),
@@ -66,18 +68,32 @@ class _MoviesViewState extends State<MoviesView> {
   void searchMovie(String searchedText) async {
     actualSearchedText = searchedText.replaceAll(" ", "+");
     actualPage = 1;
-    searchedMovies = Future.value(await _moviesController.searchMovie(actualSearchedText));
+    searchedMovies =
+        Future.value(await _moviesController.searchMovie(actualSearchedText));
     setState(() {});
   }
 
   goToNextPage() async {
     actualPage++;
-    searchedMovies = Future.value(await _moviesController.searchMovieWithDifferentPage(actualSearchedText,actualPage));
+    searchedMovies = Future.value(await _moviesController
+        .searchMovieWithDifferentPage(actualSearchedText, actualPage));
     setState(() {});
   }
+
   goToPreviousPage() async {
     actualPage--;
-    searchedMovies = Future.value(await _moviesController.searchMovieWithDifferentPage(actualSearchedText,actualPage));
+    searchedMovies = Future.value(await _moviesController
+        .searchMovieWithDifferentPage(actualSearchedText, actualPage));
     setState(() {});
+  }
+
+  openMovieCard(MoviesModel movie) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => MovieInfoView(
+                movie: movie,
+              )),
+    );
   }
 }
