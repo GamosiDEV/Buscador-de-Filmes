@@ -47,4 +47,20 @@ class MoviesModel {
         type: json['Type'],
         imdbID: json['imdbID']);
   }
+
+  toJson() {
+    return {
+      "Title": title,
+      "Year": year,
+      "Runtime": runtime,
+      "Genre": genre,
+      "Director": director,
+      "imdbRating": imdbRating,
+      "Type": type,
+      "Poster": poster,
+      "Plot": plot,
+      "Metascore": metascore,
+      "imdbID": imdbID,
+    };
+  }
 }

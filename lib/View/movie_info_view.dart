@@ -41,7 +41,9 @@ class _MovieInfoViewState extends State<MovieInfoView> {
               snapshot.connectionState != ConnectionState.done) {
             return Container();
           }
-          return MovieInfoContentView(movie: snapshot.data as MoviesModel);
+          return MovieInfoContentView(
+            movie: snapshot.data as MoviesModel,
+          );
         },
       ),
     );

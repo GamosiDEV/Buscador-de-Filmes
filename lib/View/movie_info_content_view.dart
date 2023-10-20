@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:movie_database/Controller/movie_info_content_controller.dart';
 import 'package:movie_database/Model/movies_model.dart';
 
 class MovieInfoContentView extends StatelessWidget {
   final MoviesModel movie;
-  const MovieInfoContentView({super.key, required this.movie});
+  MovieInfoContentView({super.key, required this.movie});
 
   static final String GENERIC_IMAGE =
       'https://cdn-icons-png.flaticon.com/512/10449/10449616.png';
+
+  MovieInfoContentController _movieInfoContentController =
+      MovieInfoContentController();
 
   @override
   Widget build(BuildContext context) {
@@ -75,12 +79,16 @@ class MovieInfoContentView extends StatelessWidget {
           Container(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: addToFavorites,
               child: Text('Adicionar aos Favoritos'),
             ),
           )
         ],
       ),
     );
+  }
+
+  addToFavorites() async {
+    _movieInfoContentController.addToFavorites(movie);
   }
 }

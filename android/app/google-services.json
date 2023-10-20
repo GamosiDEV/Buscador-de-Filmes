@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "150773548065",
+    "project_id": "buscador-de-filmes-d192c",
+    "storage_bucket": "buscador-de-filmes-d192c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:150773548065:android:37aa19b161b493ffa48f60",
+        "android_client_info": {
+          "package_name": "com.example.movie_database"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAauXovJuh_xAs5P5rhOl2xXqr0QbJ3ytE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -24,9 +24,15 @@ class _HomeViewState extends State<HomeView> {
         height: 60,
         selectedIndex: index,
         onDestinationSelected: (value) => setState(() => index = value),
-        destinations:const  [
-          NavigationDestination(icon: Icon(Icons.list_outlined),selectedIcon:Icon(Icons.list), label: 'Lista de Filmes'),
-          NavigationDestination(icon: Icon(Icons.favorite_border_outlined),selectedIcon: Icon(Icons.favorite), label: 'Favoritos'),
+        destinations: const [
+          NavigationDestination(
+              icon: Icon(Icons.list_outlined),
+              selectedIcon: Icon(Icons.list),
+              label: 'Lista de Filmes'),
+          NavigationDestination(
+              icon: Icon(Icons.favorite_border_outlined),
+              selectedIcon: Icon(Icons.favorite),
+              label: 'Favoritos'),
         ],
       ),
     );
