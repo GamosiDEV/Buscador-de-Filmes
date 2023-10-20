@@ -22,7 +22,14 @@ class MovieInfoContentView extends StatelessWidget {
           Center(
             child: SizedBox.fromSize(
                 child: Image.network(
-                    movie.poster == 'N/A' ? GENERIC_IMAGE : movie.poster),
+                  movie.poster,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Icon(
+                      Icons.question_mark,
+                      size: 200,
+                    );
+                  },
+                ),
                 size: Size.fromRadius(200)),
           ),
           movie.plot != 'N/A'
@@ -79,7 +86,12 @@ class MovieInfoContentView extends StatelessWidget {
           Container(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: addToFavorites,
+              onPressed: () {
+                addToFavorites();
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text("Filme adicionado aos favoritos"),
+                ));
+              },
               child: Text('Adicionar aos Favoritos'),
             ),
           )

@@ -30,7 +30,7 @@ class _FavoritesViewState extends State<FavoritesView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Procurar na lista"),
+        title: Text("Lista de Favoritos"),
       ),
       body: Container(
         width: double.infinity,

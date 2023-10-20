@@ -16,10 +16,11 @@ class OmdbApiController {
     var json = jsonDecode(response.body);
 
     List<MoviesModel> listOfMovies = [];
-    for (var movie in json['Search']) {
-      listOfMovies.add(MoviesModel.fromJsonToList(movie));
+    if (json['Search'] != null) {
+      for (var movie in json['Search']) {
+        listOfMovies.add(MoviesModel.fromJsonToList(movie));
+      }
     }
-
     return listOfMovies;
   }
 

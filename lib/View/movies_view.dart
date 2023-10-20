@@ -22,7 +22,7 @@ class _MoviesViewState extends State<MoviesView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Procurar na lista"),
+        title: Text("Lista Geral"),
       ),
       body: Container(
         width: double.infinity,

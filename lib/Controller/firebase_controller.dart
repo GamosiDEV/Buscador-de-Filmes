@@ -32,7 +32,11 @@ class FirebaseController {
 
     await _firebaseFirestore.collection(FAVORITES).get().then((favorites) {
       for (final movie in favorites.docs) {
-        if (movie.data()['Title'].toString().contains(text)) {
+        if (movie
+            .data()['Title']
+            .toString()
+            .toLowerCase()
+            .contains(text.toLowerCase())) {
           listOfMovies.add(MoviesModel.fromJsonAllData(movie.data()));
         }
       }
