@@ -5,7 +5,7 @@ import 'package:movie_database/Model/movies_model.dart';
 
 class OmdbApiController {
   String allDataApiUrl =
-      'http://www.omdbapi.com/?apikey=b3087fac&'; //key: b3087fac
+      'http://www.omdbapi.com/?apikey=4d5ca7b4&'; //key: 4d5ca7b4
 
   Future<http.Response> getApiDataByString(String uri) async {
     return await http.get(Uri.parse(uri));
